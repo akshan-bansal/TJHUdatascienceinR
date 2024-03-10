@@ -1,0 +1,23 @@
+name: md-pandoc-pipeline
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-pandoc:
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v3
+      - name: Convert MD File 
+        run: |
+          for file in *.md
+          do
+            echo $file 
+          done 
+      - name: Understand JHURegr 
+        uses: actions/upload-artifact@v2
+        with:
+          name: akshan-pptx-$(( github.run_id ))
+          path: ./*.pptx
+          
