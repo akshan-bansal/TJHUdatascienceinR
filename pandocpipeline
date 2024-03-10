@@ -1,0 +1,23 @@
+name: pandoc-ppt-pipeline 
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-pandoc:
+    runs-on: ubuntu-latest 
+      steps:
+        uses: actions/checkout@v3
+        name: Convert File 
+        run: |
+          for file in *.md
+          do
+            echo $file 
+          done
+        name: upload artifact 
+          uses: actions/upload-artifact@v2 
+          with:
+            name: jhregrresiduals-pptx-$((github.run_id))
+            path: ./*.pptx
+            
